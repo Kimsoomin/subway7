@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/appcolor</item>
+        <item name="colorPrimaryDark">@color/appcolor</item>
+        <item name="colorAccent">@color/appcolor</item>
+        <item name="android:homeAsUpIndicator">@drawable/btn_title_back_state</item>
+    </style>
+
+</resources>

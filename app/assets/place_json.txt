@@ -1,0 +1,315 @@
+{
+"status": "OK",
+"place": [
+{
+"idx": "2511",
+"seqCode": "75e00d9cd094b024b5da724a94b5c6b8",
+"cityIdx": "66866",
+"title": "test 장소 2",
+"category": "7",
+"categoryName": "美食",
+"lat": "37.527825798475995",
+"lng": "126.98853135108948",
+"popular": "0",
+"rate": "0",
+"likeCount": "0",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10031",
+"userName": "mint",
+"gender": "M",
+"mfidx": null,
+"insertDate": "2015-06-11 10:38:50",
+"updateDate": "2015-06-11 10:38:50",
+"area": "13176.514936208072",
+"ownerUserSeq": "10031",
+"premiumIdx": null,
+"image": [
+{
+"fidx": "920617",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920617&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2508",
+"seqCode": "07f7fcbbb11dfa4a4f1368b5ce1fcd49",
+"cityIdx": "7096",
+"title": "国立民俗博物馆",
+"category": "3",
+"categoryName": "文化",
+"lat": "37.610576876256644",
+"lng": "127.12253451347351",
+"popular": "10",
+"rate": "0",
+"likeCount": "0",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10002",
+"userName": "HanHaYou",
+"gender": "F",
+"mfidx": null,
+"insertDate": "2015-06-08 17:14:52",
+"updateDate": "2015-06-08 17:14:52",
+"area": "13183.394976404164",
+"ownerUserSeq": "10002",
+"premiumIdx": "220",
+"image": [
+{
+"fidx": "920598",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920598&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2507",
+"seqCode": "c4f8efa544ac8a232c2f7e7f924f5479",
+"cityIdx": "5879",
+"title": "北岳八角亭 (북악 팔각정)",
+"category": "1",
+"categoryName": "其他景点",
+"lat": "37.600360211806034",
+"lng": "126.9719660282135",
+"popular": "6",
+"rate": "0",
+"likeCount": "0",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10002",
+"userName": "HanHaYou",
+"gender": "F",
+"mfidx": null,
+"insertDate": "2015-06-08 14:36:56",
+"updateDate": "2015-06-08 14:36:56",
+"area": "13171.823001095974",
+"ownerUserSeq": "10002",
+"premiumIdx": null,
+"image": [
+{
+"fidx": "920596",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920596&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2502",
+"seqCode": "87fc56d0985db4618b95c31fb67a71da",
+"cityIdx": "5879",
+"title": "Chamimat土豆湯 (참이맛 감자탕)",
+"category": "7",
+"categoryName": "美食",
+"lat": "37.55882889035008",
+"lng": "126.93888902664186",
+"popular": "39",
+"rate": "9",
+"likeCount": "2",
+"bookmarkCount": "0",
+"shareCount": "1",
+"reviewCount": "1",
+"userSeq": "10003",
+"userName": "planner",
+"gender": "M",
+"mfidx": null,
+"insertDate": "2015-06-06 21:02:40",
+"updateDate": "2015-06-06 21:02:40",
+"area": "13171.099550038633",
+"ownerUserSeq": "10003",
+"premiumIdx": "305",
+"image": [
+{
+"fidx": "920575",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920575&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2501",
+"seqCode": "61014021d640b40b216406ab0426dab8",
+"cityIdx": "66859",
+"title": "Mamonde旗舰店 (마몽드 플래그십 스토어)",
+"category": "2",
+"categoryName": "购物",
+"lat": "37.56282615538888",
+"lng": "126.98474943637848",
+"popular": "33",
+"rate": "0",
+"likeCount": "0",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10003",
+"userName": "planner",
+"gender": "M",
+"mfidx": null,
+"insertDate": "2015-06-06 20:40:17",
+"updateDate": "2015-06-06 20:40:17",
+"area": "13174.588438758",
+"ownerUserSeq": "10003",
+"premiumIdx": "308",
+"image": [
+{
+"fidx": "920573",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920573&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2500",
+"seqCode": "7218f0d08f63d0090efa4650f730f7ab",
+"cityIdx": "5879",
+"title": "K-POP歌星4D演唱会体验馆(케이팝 홀로그램 콘서트 클라이브)",
+"category": "6",
+"categoryName": "体验",
+"lat": "37.56551780984112",
+"lng": "127.00707077980042",
+"popular": "61",
+"rate": "10",
+"likeCount": "1",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10002",
+"userName": "HanHaYou",
+"gender": "F",
+"mfidx": null,
+"insertDate": "2015-06-06 20:29:57",
+"updateDate": "2015-06-06 20:30:16",
+"area": "13176.251347307612",
+"ownerUserSeq": "10002",
+"premiumIdx": "358",
+"image": [
+{
+"fidx": "920572",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920572&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2499",
+"seqCode": "8f9564b5d7db3b1fb238311ce1a7b637",
+"cityIdx": "66859",
+"title": "明洞哈莫妮超市 (명동 하모니마트)",
+"category": "2",
+"categoryName": "购物",
+"lat": "37.56280914620477",
+"lng": "126.98515176773071",
+"popular": "15",
+"rate": "0",
+"likeCount": "0",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10003",
+"userName": "planner",
+"gender": "M",
+"mfidx": null,
+"insertDate": "2015-06-06 20:29:12",
+"updateDate": "2015-06-06 20:29:12",
+"area": "13174.621455835444",
+"ownerUserSeq": "10003",
+"premiumIdx": "309",
+"image": [
+{
+"fidx": "920571",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920571&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2498",
+"seqCode": "d141dbe9091f374f8dac77291c0ecd41",
+"cityIdx": "5879",
+"title": "明洞购物街 (명동 쇼핑거리)",
+"category": "2",
+"categoryName": "购物",
+"lat": "37.560759511091554",
+"lng": "126.98499083518982",
+"popular": "17",
+"rate": "0",
+"likeCount": "1",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10003",
+"userName": "planner",
+"gender": "M",
+"mfidx": null,
+"insertDate": "2015-06-06 20:18:01",
+"updateDate": "2015-06-06 20:18:01",
+"area": "13174.703660173851",
+"ownerUserSeq": "10003",
+"premiumIdx": "306",
+"image": [
+{
+"fidx": "920569",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920569&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2497",
+"seqCode": "8dee5a18c7641319a14976ab2931488b",
+"cityIdx": "5879",
+"title": "北村李家文化体验院(북촌 이가 문화체험원)",
+"category": "3",
+"categoryName": "文化",
+"lat": "37.5819760325425",
+"lng": "126.98697566986083",
+"popular": "45",
+"rate": "0",
+"likeCount": "0",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10002",
+"userName": "HanHaYou",
+"gender": "F",
+"mfidx": null,
+"insertDate": "2015-06-06 20:16:07",
+"updateDate": "2015-06-06 20:16:07",
+"area": "13173.87805224596",
+"ownerUserSeq": "10002",
+"premiumIdx": "357",
+"image": [
+{
+"fidx": "920568",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920568&tb=&ws=&hs="
+}
+]
+},
+{
+"idx": "2496",
+"seqCode": "9fa1db2e0d739df703ad3d22ce0e2698",
+"cityIdx": "5879",
+"title": "弘大戒指村 (홍대 반지마을)",
+"category": "6",
+"categoryName": "体验",
+"lat": "37.551858678044994",
+"lng": "126.9228011369705",
+"popular": "49",
+"rate": "0",
+"likeCount": "0",
+"bookmarkCount": "0",
+"shareCount": "0",
+"reviewCount": "0",
+"userSeq": "10003",
+"userName": "planner",
+"gender": "M",
+"mfidx": null,
+"insertDate": "2015-06-06 20:11:12",
+"updateDate": "2015-06-06 23:20:15",
+"area": "13170.133084062343",
+"ownerUserSeq": "10003",
+"premiumIdx": "304",
+"image": [
+{
+"fidx": "920566",
+"url": "http://gs.blinking.kr:8900/_html/loading.php?idx=920566&tb=&ws=&hs="
+}
+]
+}
+]
+}

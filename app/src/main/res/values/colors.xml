@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="appcolor">#2dbdb6</color>
+    <color name="background">#404343</color>
+    <color name="background_darker_gray">#333434</color>
+    <color name="box_stroke">#f0f0f0</color>
+    <color name="select_box_stroke">#2dbdb6</color>
+    <color name="middle_transparent">#80ffffff</color>
+    <color name="background_light_gray">#E8E8E8</color>
+    <color name="highlight">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="lighter_gray">#dfdfdf</color>
+    <color name="light_gray">#969b9c</color>
+    <color name="dark_gray">#828a8f</color>
+    <color name="darker_gray">#444a4b</color>
+    <color name="l_gray">#e5e5e5</color>
+    <color name="gray">#c3c3c3</color>
+    <color name="darker_gray_transparent">#a0444a4b</color>
+    <color name="light_pink">#d0ff6262</color>
+    <color name="dark_pink">#ff6262</color>
+    <color name="darker_pink">#ff4545</color>
+    <color name="dark_pink_transparent">#90ff6262</color>
+    <color name="light_blue">#d0697577</color>
+    <color name="dark_blue">#697577</color>
+    <color name="summary_center">#dddddd</color>
+    <color name="navi_center">#a3a3a3</color>
+    <color name="tutorial_skip">#686868</color>
+    <color name="setting_cell_color">#c8c7cc</color>
+    <color name="appcolor_dark">#5dacaa</color>
+    <color name="brown">#7f3a11</color>
+    <color name="bottom_border">#f0f0f0</color>
+    <!-- Caldroid -->
+    <color name="caldroid_white">#FFFFFF</color>
+    <color name="caldroid_black">#000000</color>
+    <color name="caldroid_transparent">#00000000</color>
+    <!-- For settings framework -->
+    <color name="caldroid_lighter_gray">#ddd</color>
+    <color name="caldroid_gray">#CCC</color>
+    <color name="caldroid_darker_gray">#aaa</color>
+    <!-- A light Holo shade of blue -->
+    <color name="caldroid_holo_blue_light">#2dbdb6</color>
+    <!-- A dark Holo shade of blue -->
+    <color name="caldroid_holo_blue_dark">#2dbdb6</color>
+    <!-- A really bright Holo shade of blue -->
+    <color name="caldroid_sky_blue">#2dbdb6</color>
+    <!-- BottomTabs -->
+    <color name="bottom_text_color">#b9c4c4</color>
+    <!-- ViewPager Indicator -->
+    <color name="vpi__background_holo_dark">#ff000000</color>
+    <color name="vpi__background_holo_light">#fff3f3f3</color>
+    <color name="vpi__bright_foreground_holo_dark">@color/vpi__background_holo_light</color>
+    <color name="vpi__bright_foreground_holo_light">@color/vpi__background_holo_dark</color>
+    <color name="vpi__bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
+    <color name="vpi__bright_foreground_disabled_holo_light">#ffb2b2b2</color>
+    <color name="vpi__bright_foreground_inverse_holo_dark">@color/vpi__bright_foreground_holo_light</color>
+    <color name="vpi__bright_foreground_inverse_holo_light">@color/vpi__bright_foreground_holo_dark</color>
+
+    <drawable name="transparent_actionbar">#00000000</drawable>
+    <drawable name="dark_gray">#444a4b</drawable>
+    <drawable name="dark_gray_transparent">#90444a4b</drawable>
+    <drawable name="dark_pink_darawable">#ff6262</drawable>
+    <drawable name="dark_pink_transparent_drawable">#90ff6262</drawable>
+    <drawable name="white">#ffffff</drawable>
+
+</resources>

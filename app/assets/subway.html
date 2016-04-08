@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=3.0 user-scalable=1"/>
+        <title>서울지하철</title>
+
+
+        <script src="snap.svg-min.js"></script>
+        <script src="jquery.min.js" charset="utf-8"></script>
+        <script src="d3.v3.min.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="./ui/jquery-ui.min.css" media="all" />
+        <script src="./ui/jquery-ui.min.js" charset="utf-8"></script>
+        <script src="subway_data.js" charset="utf-8"></script>
+        <script src="subway.js" charset="utf-8"></script>
+        <script src="snap.svg.zpd.js" charset="utf-8"></script>
+
+        <!-- <script src="file:///android_asset/snap.svg-min.js"></script>
+        <script src="file:///android_asset/jquery-1.11.1.min.js" charset="utf-8"></script>
+        <script src="file:///android_asset/d3.v3.min.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="file:///android_asset/ui/jquery-ui.min.css" media="all" />
+        <script src="file:///android_asset/ui/jquery-ui.min.js" charset="utf-8"></script>
+        <script src="file:///android_asset/subway_data.js" charset="utf-8"></script>
+        <script src="file:///android_asset/subway.js" charset="utf-8"></script>-->
+      <style>
+
+      </style>
+      <style type="text/css">
+      * {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+      }
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #svgWrapper {
+        position: relative;
+        overflow: hidden;
+        width: 2900px;
+        height: 1991px;
+      }
+
+      #svg {
+        position: absolute;
+        margin: 0 auto;
+        width: 2900px;
+        height: 1991px;
+      }
+      </style>
+    </head>
+
+   <body>
+       <div id="svgWrapper"  >
+          <svg id="svg" width="100" height="100"></svg>
+       </div>
+
+      <script src="./js/zoom.js" charset="utf-8"></script>
+      <script type="text/javascript">
+        var sbox = $('#svgWrapper');
+        var s = Snap("#svg");
+        var svg = $('#svg');
+        var background = undefined;
+        var startButton = undefined;
+        var endButton = undefined;
+        var line = undefined;
+        var tit = undefined;
+        var isCleared = false;
+        var isElementClick = false;
+        var svgPan = undefined;
+
+        window.onscroll = function (e) {
+          if(!isElementClick && background != undefined){
+            console.log("Remove popup");
+            background.remove();
+            line.remove();
+            startButton.remove();
+            endButton.remove();
+            tit.remove();
+          }
+
+          isElementClick = false;
+        }
+
+        function onSvgLoadEnded(){
+          window.myClient.onSvgLoadEnded();
+        };
+
+        function setNativeZoom(station_id){
+          window.myClient.setNativeZoom(station_id);
+        }
+
+        function completeMarkStation (station_json_array_string, time){
+          window.myClient.completeMarkStation(station_json_array_string, time);
+        };
+
+        function completeLoadAllStation (station_json_array_string){
+          window.myClient.completeLoadAllStation(station_json_array_string);
+        };
+
+        function completedFindNearByStation (station_id){
+          window.myClient.completedFindNearByStation(station_id);
+        };
+
+        function completedSetDestStation (station_id, type){
+          window.myClient.completedSetDestStation(station_id, type);
+        };
+
+        function setStartStation (station_id){
+          window.myClient.setStartStation(station_id);
+        };
+
+        function setEndStation (station_id){
+          window.myClient.setEndStation(station_id);
+        };
+
+        var subway = {
+          start_station: undefined,
+          start_station_id: undefined,
+          end_station: undefined,
+          end_station_id: undefined,
+          marked_stations: [],
+          marked_stations_interval_ids: [],
+          clear_start_station: function(){
+            if (this.start_station) {
+              this.start_station.remove()
+            }
+            this.start_station_id = undefined;
+            this.clear_marked_stations();
+            isCleared = true;
+          },
+          clear_end_station: function(){
+            if (this.end_station) {
+              this.end_station.remove()
+            }
+            this.end_station_id = undefined;
+            this.clear_marked_stations();
+            isCleared = true;
+          },
+          set_start_station: function(station_id) {
+            if (this.start_station) {
+              this.start_station.remove()
+            }
+
+            station = Snap.select(".station#"+station_id)
+
+            try{
+              bound = station.getBBox()
+            }catch(exception){
+              console.log("Re-find")
+              for (var i = 0; i < station_ids.length; i++){
+                if(station_ids[i].indexOf(station_id) > -1 && station_ids[i] != station_id){
+                  var temp_station = Snap.select(".station#"+station_ids[i])
+
+                  try{
+                    if(temp_station.getBBox() != null){
+                      bound = temp_station.getBBox()
+                    }
+                    break;
+                  }catch(exception2){
+                  }
+                }
+              }
+            }
+
+            var adjustX = 0;
+            var adjustY = 0;
+            if(80 >bound.width  && bound.width > 58){
+              //환승역3/4개
+              adjustX = 17;
+              adjustY = 0;
+            }
+            else if(57 >bound.width  && bound.width > 32){
+              //환승역2개
+              adjustX = 8;
+              adjustY = 0;
+            }
+            else if(31 >bound.width  && bound.width > 29){
+              adjustX = -1;
+              adjustY = -1;
+            }
+
+            this.start_station = s.image('./ui/images/pin_subway_start.png', bound.x - 3 + adjustX, bound.y - 42 + adjustY, 35, 50);
+            this.start_station_id = station_id
+
+            if (this.end_station_id) {
+              this.calcRoute()
+            }
+          },
+          set_end_station: function(station_id) {
+            if (this.end_station) {
+              this.end_station.remove()
+            }
+            station = Snap.select(".station#"+station_id)
+
+            try{
+              bound = station.getBBox()
+            }catch(exception){
+
+              for (var i = 0; i < station_ids.length; i++){
+                if(station_ids[i].indexOf(station_id) > -1 && station_ids[i] != station_id){
+                  var temp_station = Snap.select(".station#"+station_ids[i])
+
+                  try{
+                    if(temp_station.getBBox() != null){
+                      bound = temp_station.getBBox()
+                    }
+                    break;
+                  }catch(exception){
+
+                  }
+                }
+              }
+
+            }
+
+            var adjustX = 0;
+            var adjustY = 0;
+            if(80 >bound.width  && bound.width > 58){
+              //환승역3/4개
+              adjustX = 17;
+              adjustY = 0;
+            }
+            else if(57 >bound.width  && bound.width > 32){
+              //환승역2개
+              adjustX = 8;
+              adjustY = 0;
+            }
+            else if(31 >bound.width  && bound.width > 29){
+              adjustX = -1;
+              adjustY = -1;
+            }
+
+            this.end_station = s.image('./ui/images/pin_subway_finish.png', bound.x - 3 + adjustX, bound.y - 42 + adjustY, 35, 50);
+            this.end_station_id = station_id
+
+            if (this.start_station_id) {
+              this.calcRoute()
+            }
+          },
+          calcRoute: function() {
+            this.clear_marked_stations()
+            var path = path_for_stations(this.start_station_id, this.end_station_id)
+
+
+            var path_infos = new Array()
+            for (var i = 0; i < path.length; i++) {
+              path_infos.push(stations[path[i]])
+            }
+            time = floyd_time(this.start_station_id, this.end_station_id)
+            console.log("Time")
+            console.log(time)
+            this.mark_stations(path)
+            onRouteCalculated(path_infos, time)
+          },
+          mark_station: function(stationbean) {
+            try{
+              // //예외 케이스 '-' 때문에 해당 역은 예외로 추가함
+              if(stationbean.id == "line234")
+                stationbean.id = "line140line234"
+              if(stationbean.id == "line211")
+                stationbean.id = "line211_1_"
+
+              var station = Snap.select(".station[id*="+stationbean.id+"]")
+             
+              var bound;
+              try{
+                if(stationbean.id == "line211")
+                  station= Snap.select(".station[id*=line211]")
+                bound = station.getBBox()
+
+              }catch(exception){
+                console.log("Re-Find in markstation");
+                for (var i = 0; i < station_ids.length; i++){
+                  if(station_ids[i].indexOf(station_id) > -1 && station_ids[i] != station_id ){
+                    var temp_station = Snap.select(".station#"+station_ids[i])
+                    // console.log(station_ids[i])
+
+                    try{
+                      if(temp_station.getBBox() != null){
+                        // console.log(temp_station.getBBox())
+                        bound = temp_station.getBBox()
+                      }
+                      break;
+                    }catch(exception){
+                      console.log(exception)
+                    }
+                  }
+                }
+              }
+
+              var image = undefined;
+              try{
+                if(stationbean.isTransfer){
+                  console.log(stationbean.id.split("line").length)
+                  if(stationbean.id.split("line").length == 5){
+                    //환승역4개
+                    image = s.image('./ui/images/icon_subway_transfer.png', bound.x + 10, bound.y - 15, 50, 50);
+                  }
+                  else if(stationbean.id.split("line").length == 4){
+                    //환승역3개
+                    image = s.image('./ui/images/icon_subway_transfer.png', bound.x + 10, bound.y - 15, 50, 50);
+                  }
+                  else
+                    image = s.image('./ui/images/icon_subway_transfer.png', bound.x + 2, bound.y - 15, 50, 50);
+                }else{
+                  if(80 >bound.width  && bound.width > 58){
+                    //환승역3/4개
+                    image = s.image('./ui/images/icon_subway_route.png', bound.x + 17, bound.y - 7, 32, 32);
+                  }
+                  else if(57 >bound.width  && bound.width > 32){
+                    //환승역2개
+                    image = s.image('./ui/images/icon_subway_route.png', bound.x + 8, bound.y - 7, 32, 32);
+                  }
+                  else if(31 >bound.width  && bound.width > 29){
+                     image = s.image('./ui/images/icon_subway_route.png', bound.x - 1, bound.y - 8, 32, 32);
+                  }
+                  else
+                    image = s.image('./ui/images/icon_subway_route.png', bound.x - 1, bound.y - 8, 32, 32);
+                }
+              }catch(exception){
+                console.log(exception);
+              }
+
+              image.click(function(event) {
+                 console.log("image click");
+                 showDestinationPopUp(stationbean.id);
+               });
+
+              this.marked_stations.push(image);
+
+
+              if(stationbean.id != "line211" && stationbean.id != "line234"){
+                var animation = function(){
+                    if(image.hasClass("on")){
+                        image.removeClass("on")
+                        image.animate({opacity: '0'}, 1000, mina.linear, null)
+                    }else{
+                        image.addClass("on")
+                        image.animate({opacity: '1.0'}, 1000, mina.linear, null)
+                    }
+                }
+
+                var refreshIntervalId = setInterval(function() {
+                    animation();
+                }, 800);
+
+                this.marked_stations_interval_ids.push(refreshIntervalId);
+              }
+            }catch(exception){
+              console.log(exception)
+            }
+
+          },
+          clear_marked_stations: function() {
+            console.log("clear")
+
+            for (var i = 0; i < this.marked_stations_interval_ids.length; i++) {
+              clearInterval(this.marked_stations_interval_ids[i]);
+            }
+            this.marked_stations_interval_ids = []
+
+            var length = this.marked_stations.length
+            for (var i = 0; i < length; i++) {
+              var marked_station = this.marked_stations[i]
+              try{
+                  marked_station.stop();
+                  marked_station.removeClass("on");
+                  marked_station.remove();
+              }catch(exception){
+                console.log(exception)
+              }
+            }
+            this.marked_stations = []
+          },
+          mark_stations: function(array) {
+            var length = array.length
+            var jsonArray = new Array();
+
+            for (var i = 0; i < length; i++){
+              var jsonObject = new Object();
+              var stationInfo = stations[array[i]];
+
+              jsonObject.name = stationInfo.name_cn;
+              jsonObject.name_ko = stationInfo.name_ko;
+              jsonObject.name_en = stationInfo.name_en;
+              jsonObject.id = stationInfo.id;
+              jsonObject.line = stationInfo.line;
+              jsonObject.exit_locations = stationInfo.exits;
+              jsonObject.lat = stationInfo.location.latitude;
+              jsonObject.lon = stationInfo.location.longitude;
+              jsonObject.exit_locations = stationInfo.exits;
+              jsonObject.before_station_line = undefined;
+              jsonObject.after_station_line = undefined;
+              jsonObject.isTransfer = false;
+              if(jsonObject.line.indexOf("환승") > -1)
+                jsonObject.isTransfer = true;
+
+              jsonArray.push(jsonObject);
+            }
+            console.log("TEST!")
+
+            for (var i = 0; i < jsonArray.length; i++){
+              try{
+                if(jsonArray[i].line.indexOf("환승")>-1){
+                  if(i == 0){
+                    jsonArray[i].after_station_line = jsonArray[i+1].line;
+                  }else{
+                    jsonArray[i].before_station_line = jsonArray[i-1].line;
+                    jsonArray[i].after_station_line = jsonArray[i+1].line;
+                  }
+                }
+              }catch(exception){
+
+              }
+            }
+
+            for (var i = 0; i < jsonArray.length; i++){
+              try{
+                if(jsonArray[i].line.indexOf("환승")>-1){
+                    if(i==0){
+                      jsonArray.splice(i + 1, 1);
+                    }
+                    else if(i==jsonArray.length-1){
+                      jsonArray.splice(i - 1, 1);
+                    }
+                    else{
+                      jsonArray.splice(i - 1, 1);
+                      jsonArray.splice(i, 1);
+                    }
+                }
+              }catch(exception){
+
+              }
+            }
+
+            if(jsonArray[jsonArray.length -1].id == jsonArray[jsonArray.length-2].id){
+              jsonArray.splice(jsonArray.length -1, 1);
+            }
+
+             if(jsonArray[0].line.indexOf("환승") > -1){
+              if(jsonArray[0].before_station_line == undefined && jsonArray[jsonArray.length-1].after_station_line != ""){
+                jsonArray[0].line = jsonArray[0].after_station_line;
+              }
+              if(jsonArray[0].after_station_line == undefined && jsonArray[jsonArray.length-1].before_station_line != ""){
+                jsonArray[0].line = jsonArray[0].before_station_line;
+              }
+            }
+
+            if(jsonArray[jsonArray.length-1].line.indexOf("환승") > -1){
+              if(jsonArray[jsonArray.length-1].before_station_line != undefined && jsonArray[jsonArray.length-1].after_station_line != undefined){
+                jsonArray[jsonArray.length-1].line = jsonArray[jsonArray.length-1].before_station_line;
+              }
+              if(jsonArray[jsonArray.length-1].before_station_line != undefined && jsonArray[jsonArray.length-1].after_station_line == undefined){
+                jsonArray[jsonArray.length-1].line = jsonArray[jsonArray.length-1].before_station_line;
+              }
+            }
+
+
+
+            for (var i = 0; i < jsonArray.length; i++){
+              if(i != 0 && i != jsonArray.length - 1){
+                  this.mark_station(jsonArray[i]);
+              }
+            }
+
+            if (this.start_station) {
+              this.start_station.remove()
+            }
+            if (this.end_station) {
+              this.end_station.remove()
+            }
+
+            // //예외 케이스 '-' 때문에 해당 역은 예외로 추가함
+            var temp_stationd_id = this.start_station_id;
+            if(this.start_station_id == "line234")
+              temp_stationd_id = "line140line234"
+            if(this.start_station_id == "line211")
+              temp_stationd_id = "line211_1_"
+
+            station = Snap.select(".station#"+temp_stationd_id)
+
+            try{
+              bound = station.getBBox()
+            }catch(exception){
+              console.log("Re-find")
+
+              for (var i = 0; i < station_ids.length; i++){
+                if(station_ids[i].indexOf(this.start_station_id) > -1 && station_ids[i] != this.start_station_id){
+                  var temp_station = Snap.select(".station#"+station_ids[i])
+
+                  try{
+                    if(temp_station.getBBox() != null){
+                      bound = temp_station.getBBox()
+                    }
+                    break;
+                  }catch(exception2){
+                  }
+                }
+              }
+            }
+
+            var adjustX = 0;
+            var adjustY = 0;
+            if(80 >bound.width  && bound.width > 58){
+              //환승역3/4개
+              adjustX = 22;
+              adjustY = 0;
+            }
+            else if(57 >bound.width  && bound.width > 32){
+              //환승역2개
+              adjustX = 8;
+              adjustY = 0;
+            }
+            else if(31 >bound.width  && bound.width > 29){
+              adjustX = -1;
+              adjustY = -1;
+            }
+
+            this.start_station = s.image('./ui/images/pin_subway_start.png', bound.x - 3 + adjustX, bound.y - 42 + adjustY, 35, 50);
+
+            temp_stationd_id = this.end_station_id;
+            if(this.end_station_id == "line234")
+              temp_stationd_id = "line140line234"
+            if(this.end_station_id == "line211")
+              temp_stationd_id = "line211_1_"
+            
+            station = Snap.select(".station#"+temp_stationd_id)
+
+            try{
+              bound = station.getBBox()
+            }catch(exception){
+              console.log("Re-find")
+              for (var i = 0; i < station_ids.length; i++){
+                if(station_ids[i].indexOf(this.end_station_id) > -1 && station_ids[i] != this.end_station_id){
+                  var temp_station = Snap.select(".station#"+station_ids[i])
+
+                  try{
+                    if(temp_station.getBBox() != null){
+                      bound = temp_station.getBBox()
+                    }
+                    break;
+                  }catch(exception2){
+                  }
+                }
+              }
+            }
+
+            this.end_station = s.image('./ui/images/pin_subway_finish.png', bound.x - 3 + adjustX, bound.y - 42 + adjustY, 35, 50);
+
+
+            console.log(jsonArray);
+
+            var jsonInfo = JSON.stringify(jsonArray);
+            completeMarkStation(jsonInfo, floyd_time(this.start_station_id, this.end_station_id));
+          },
+          setCenterWithStationIdWithoutPopup: function (station_id){
+            station = Snap.select(".station#"+station_id);
+            try{
+              bound = station.getBBox()
+            }catch(exception){
+              for (var i = 0; i < station_ids.length; i++){
+                if(station_ids[i].indexOf(station_id) > -1 && station_ids[i] != station_id){
+                  var temp_station = Snap.select(".station#"+station_ids[i])
+                  console.log(station_ids[i])
+
+                  try{
+                    if(temp_station.getBBox() != undefined){
+                      console.log(temp_station.getBBox())
+                      bound = temp_station.getBBox()
+                    }
+                    break;
+                  }catch(exception){
+                    console.log(exception);
+                  }
+                }
+              }
+            }
+
+            var half_width = window.innerWidth/2
+            var half_height = window.innerHeight/2
+            console.log(half_width, half_height)
+            window.scrollTo(bound.x - half_width, bound.y - half_height);
+          },
+          setCenterWithStationId: function (station_id){
+            station = Snap.select(".station#"+station_id);
+            try{
+              bound = station.getBBox()
+            }catch(exception){
+              for (var i = 0; i < station_ids.length; i++){
+                if(station_ids[i].indexOf(station_id) > -1 && station_ids[i] != station_id){
+                  var temp_station = Snap.select(".station#"+station_ids[i])
+                  console.log(station_ids[i])
+
+                  try{
+                    if(temp_station.getBBox() != undefined){
+                      console.log(temp_station.getBBox())
+                      bound = temp_station.getBBox()
+                    }
+                    break;
+                  }catch(exception){
+                    console.log(exception);
+                  }
+                }
+              }
+            }
+
+            var half_width = window.innerWidth/2
+            var half_height = window.innerHeight/2
+            console.log(half_width, half_height)
+            window.scrollTo(bound.x - half_width, bound.y - half_height);
+
+            if(background != undefined){
+              background.remove();
+              line.remove();
+              startButton.remove();
+              endButton.remove();
+              tit.remove();
+            }
+
+            if(station_id == "line211_1_")
+              station_id = "line211"
+            var stationBean = stations[station_id];
+
+            var adjustX = 0;
+            var adjustY = 0;
+            if(80 >bound.width  && bound.width > 58){
+              //환승역3/4개
+              adjustX = 17;
+              adjustY = 0;
+            }
+            else if(57 >bound.width  && bound.width > 32){
+              //환승역2개
+              adjustX = 8;
+              adjustY = 0;
+            }
+            else if(31 >bound.width  && bound.width > 29){
+              adjustX = -1;
+              adjustY = -1;
+            }
+
+            background  = s.image('./ui/images/popup_station.png', bound.x - 105 + adjustX, bound.y - 90 + adjustY, 243, 90);
+            startButton = s.image('./ui/images/icon_start.png', bound.x - 76 + adjustX, bound.y - 50 + adjustY, 60, 27);
+            endButton = s.image('./ui/images/icon_finish.png', bound.x + 48 + adjustX, bound.y - 50 + adjustY, 60, 27);
+            line = s.image('./ui/images/ic_line.png', bound.x + 15 + adjustX, bound.y - 50 + adjustY, 1, 28);
+
+            tit = s.text(bound.x + 15 + adjustX, bound.y - 64 + adjustY, stationBean.name_cn);
+             tit.attr({
+               fill: "#fff",
+               textAnchor: "middle",
+               fontSize: "16px"
+             });
+
+             startButton.click(function(event) {
+              if(background != undefined){
+                background.remove();
+                line.remove();
+                startButton.remove();
+                endButton.remove();
+                tit.remove();
+              }
+              // ## Native
+              setStartStation(station_id);
+
+              // ## Web test
+              // subway.set_start_station(station_id);
+             });
+
+             endButton.click(function(event) {
+              if(background != undefined){
+                background.remove();
+                line.remove();
+                startButton.remove();
+                endButton.remove();
+                tit.remove();
+              }
+              // ## Native
+              setEndStation(station_id);
+
+              // ## Web test
+              // subway.set_end_station(station_id);
+             });
+          },
+          findNearByStation: function(find_lat, find_lon){
+            var jsonArray = new Array();
+            for (var i = 0; i < station_ids.length; i++){
+              var station = stations[station_ids[i]];
+
+              var station_lat = station.location.latitude;
+              var station_lon = station.location.longitude;
+
+
+              var R = 6371; // Radius of the earth in km
+              var dLat = (station_lat-find_lat)* (Math.PI/180);  // deg2rad below
+              var dLon = (station_lon-find_lon)* (Math.PI/180);
+              var a =
+              Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos((find_lat)* (Math.PI/180)) * Math.cos((station_lat)* (Math.PI/180)) *
+              Math.sin(dLon/2) * Math.sin(dLon/2)
+              ;
+              var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+              var d = R * c; // Distance in km
+
+              var distance = d;
+              var jsonObject = new Object();
+
+
+              jsonObject.name = station.name_cn;
+              jsonObject.name_ko = station.name_ko;
+              jsonObject.id = station_ids[i];
+              jsonObject.line = station.line;
+              jsonObject.distance = distance;
+
+              if(jsonObject.line != "용인에버라인")
+                jsonArray.push(jsonObject);
+            }
+
+            jsonArray.sort(function (a, b) {
+                var sortResult = 0;
+                if (a.distance < b.distance) {
+                    sortResult =  -1;
+                }
+                else if (a.distance > b.distance) {
+                    sortResult =  1;
+                }
+                return sortResult;
+            });
+
+            // console.log(jsonArray);
+            var firstStation = jsonArray[0];
+            var tempStationId = firstStation.id;
+            try{
+              if(jsonArray[0].line.indexOf("환승") > -1)
+                firstStation = jsonArray[1];
+            }catch(exception)
+            {
+
+            }
+
+            completedFindNearByStation(firstStation.id);
+          },
+          setDestStation: function(find_lat, find_lon, find_type){
+            var jsonArray = new Array();
+            for (var i = 0; i < station_ids.length; i++){
+              var station = stations[station_ids[i]];
+
+              var station_lat = station.location.latitude;
+              var station_lon = station.location.longitude;
+
+
+              var R = 6371; // Radius of the earth in km
+              var dLat = (station_lat-find_lat)* (Math.PI/180);  // deg2rad below
+              var dLon = (station_lon-find_lon)* (Math.PI/180);
+              var a =
+              Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos((find_lat)* (Math.PI/180)) * Math.cos((station_lat)* (Math.PI/180)) *
+              Math.sin(dLon/2) * Math.sin(dLon/2)
+              ;
+              var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+              var d = R * c; // Distance in km
+
+              var distance = d;
+              var jsonObject = new Object();
+
+              jsonObject.name = station.name_cn;
+              jsonObject.name_ko = station.name_ko;
+              jsonObject.id = station_ids[i];
+              jsonObject.line = station.line;
+              jsonObject.distance = distance;
+
+              if(jsonObject.line != "용인에버라인")
+                jsonArray.push(jsonObject);
+            }
+
+            jsonArray.sort(function (a, b) {
+                var sortResult = 0;
+                if (a.distance < b.distance) {
+                    sortResult =  -1;
+                }
+                else if (a.distance > b.distance) {
+                    sortResult =  1;
+                }
+                return sortResult;
+            });
+
+
+            var firstStation = jsonArray[0];
+            var teststation = Snap.select(".station#"+firstStation.id)
+            var bound = ""
+            var stationString = firstStation.id
+
+            try{
+              bound = teststation.getBBox()
+
+            }catch(exception){
+
+              for (var i = 0; i < station_ids.length; i++){
+                if(station_ids[i].indexOf(firstStation.id) > -1){
+                  if(stationString == ""){
+                    stationString = station_ids[i]
+                  }else{
+                    if(stationString.length < station_ids[i].length){
+                      stationString = station_ids[i]
+                    }
+                  }
+                }
+              }
+
+            }
+
+
+            if(find_type == 0)
+              this.set_start_station(stationString)
+            else
+              this.set_end_station(stationString)
+
+            completedSetDestStation(stationString, find_type);
+          }
+        }
+
+        function compare(a, b) {
+          return a.distance - b.distance;
+        }
+
+
+        function sortByKey(array, key) {
+          return array.sort(function(a, b) {
+              var x = a[key];
+              var y = b[key];
+              return x < y;
+          });
+        }
+
+        function showDestinationPopUp(station_id){
+        	console.log("call NativeZoom!");
+          if(station_id == "line211")
+            station_id = "line211_1_"
+          //Native
+          setNativeZoom(station_id);
+
+          //Web test
+          // subway.setCenterWithStationId(station_id);
+          isElementClick = true;
+        }
+        //file:///android_asset/subway.svg
+        Snap.load("subway.svg", function(data) {
+          onStart = function(station) {
+
+          }
+          onClick = function(e) {
+            console.log("click");
+            console.log(this.node.id);
+            showDestinationPopUp(this.node.id);
+          }
+          onDblClick = function(e) {
+          }
+
+          s.click(function(e) {
+            if(!isElementClick && background != undefined){
+              background.remove();
+              line.remove();
+              startButton.remove();
+              endButton.remove();
+              tit.remove();
+            }
+          })
+
+          s.append(data);
+          $('path').filter(function() {
+            return this.id.match(/(n\w{0,1}[\d-]+)+/);
+          }).each(function(i) {
+            bound = this.getBBox();
+            rect = s.rect(bound.x, bound.y, bound.width, bound.height, bound.height / 2.0, bound.height / 2.0)
+            var transformedId = this.id
+            transformedId = transformedId.replace(/n(\w{0,1}[\d-]+)/g, "line$1")
+            transformedId = transformedId.toLowerCase()
+            rect.attr({"fill-opacity": 0.0, "id": transformedId})
+            rect.addClass("station")
+            rect.click(onClick)
+            rect.dblclick(onDblClick)
+          })
+
+          onSvgLoadEnded();
+          if(subway.start_station_id == undefined && subway.end_station_id == undefined && !isCleared)
+            subway.setCenterWithStationIdWithoutPopup("line132line201");
+        });
+
+
+        function sortByKey(array, key) {
+          return array.sort(function(a, b) {
+              var x = a[key]; var y = b[key];
+              return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+          });
+        }
+      </script>
+    </body>
+</html>

@@ -1,0 +1,421 @@
+<resources>
+
+    <string name="app_name">Hanhayou</string>
+
+    <!-- 서버 -->
+    <string name="server_address">http://aimper.mintshop.com/api/v1/</string>
+    <!-- 개발용 -->
+    <!-- <string name="server_address">http://10.0.1.11:3000/api/v1/</string> -->
+
+
+    <!-- Alert Term -->
+    <string name="term_alert">알림</string>
+    <string name="term_ok">확인</string>
+    <string name="term_cancel">취소</string>
+    <string name="term_ready_service">서비스 준비 중입니다.</string>
+    <string name="msg_general_error">불러오는데 실패했습니다. 다시 시도해주세요. </string>
+
+    <!-- Guide Term -->
+    <string name="term_skip">넘어가기</string>
+
+    <!-- MainMenu Term -->
+    <string name="term_strategy_seoul">여행공략</string>
+    <string name="term_famous_place">여행명소</string>
+    <string name="term_travel_schedule">여행일정</string>
+    <string name="term_shopping_mall">트렌디한국</string>
+    <string name="term_map">지도</string>
+    <string name="term_subway">지하철</string>
+    <string name="term_photolog">포토로그</string>
+    <string name="term_ticket">"티켓"</string>
+    <string name="term_coupon">"쿠폰"</string>
+    <string name="term_home">홈</string>
+    <string name="term_my_page">마이페이지</string>
+    <string name="term_register_photolog">후기등록</string>
+    <string name="term_wishlist">위시리스트</string>
+    <string name="term_search">검색</string>
+    <string name="msg_download_map">지도를 저장하여\n오프라인에서도\n사용해보세요!</string>
+
+    <!-- Place activities term -->
+    <string name="term_review_best">최고에요</string>
+    <string name="term_review_soso">그저\n그래요</string>
+    <string name="term_review_worst">별로에요</string>
+
+    <array name="spot_array">
+        <item>전체</item>
+        <item>인기순</item>
+        <item>북마크한 장소</item>
+        <item>등록한 장소</item>
+    </array>
+    <array name="area_array">
+        <item>전체</item>
+        <item>한류특화지역</item>
+        <item>신촌/이대/홍대</item>
+        <item>압구정/청담/강남 일대</item>
+        <item>명동/동대문</item>
+        <item>인사동/시청 (전통문화지구)</item>
+        <item>그 외 명소</item>
+    </array>
+    <!-- Mypage Term -->
+    <string name="term_setting">설정</string>
+    <string name="term_my_schedule">내 일정</string>
+    <string name="term_my_place">내 장소</string>
+    <string name="term_my_ticket_coupon">"티켓/쿠폰"</string>
+    <string name="term_my_bookmark">북마크</string>
+    <string name="term_my_order">구매내역</string>
+    <string name="term_my_cart">"장바구니"</string>
+    <string name="term_profile">계정</string>
+    <string name="term_save">저장</string>
+    <string name="term_logout">로그아웃</string>
+    <string name="term_sync">동기화</string>
+    <string name="term_sync_only_wifi">Wi-Fi에서만 동기화 처리</string>
+    <string name="term_setting_notification">알림설정</string>
+    <string name="term_about">About</string>
+    <string name="term_version_info">버전 정보</string>
+    <string name="term_rating_app">앱 평가하기</string>
+    <string name="term_notice">공지사항</string>
+    <string name="term_current_version">"현재버전 : "</string>
+    <string name="term_update">업데이트하러 가기</string>
+    <string name="term_agreement">이용약관</string>
+    <string name="term_private_agreement">개인정보 약관</string>
+    <string name="term_gps_info_agreement">위치정보 약관</string>
+
+    <!-- MyPage's sub activities term -->
+    <string name="term_change_background">배경화면 변경</string>
+    <string name="term_change_profile">프로필사진 변경</string>
+    <string name="term_month">"日"</string>
+    <string name="term_product_info">상품 정보</string>
+    <string name="term_publish">공개</string>
+    <string name="term_insert_title_here">제목을 입력해주세요.</string>
+    <string name="term_memo">메모</string>
+    <string name="term_change_location">위치 변경</string>
+    <string name="term_rate">평점</string>
+    <string name="term_more_pro_guide">전문가 추천글 보기</string>
+    <string name="term_recommend_product">추천! 이런 상품도 둘러보세요</string>
+    <string name="term_review">리뷰</string>
+    <string name="term_review_more">리뷰 더보기</string>
+    <string name="term_product_more">상품 더보기</string>
+    <string name="term_day">Day</string>
+    <string name="term_plus">+</string>
+    <string name="term_bookmark">북마크</string>
+    <string name="term_like">좋아요</string>
+    <string name="term_write_review">리뷰쓰기</string>
+    <string name="term_share">공유하기</string>
+    <!-- Menus term -->
+    <string name="term_edit">편집</string>
+    <string name="term_close">닫기</string>
+    <string name="term_delete">삭제</string>
+    <string name="term_delete_all">전체 삭제</string>
+    <string name="term_delete_confirm">삭제하시겠습니까?</string>
+    <!-- Message - Intro -->
+    <string name="message_alert_lte_mode">3G/LTE 모드에서 서비스를 이용할 경우, 데이터 요금이 청구 될 수 있습니다. 계속 진행하시겠습니까?</string>
+    <string name="message_alert_allow_notification">"'Hanhayou'에서 알림을 보내고자 합니다. 허용하시겠습니까?"</string>
+    <string name="message_write_review">리뷰를 남겨주세요</string>
+    <string name="msg_empty_value">필드를 모두 채워주세요</string>
+    <!-- 검색결과 -->
+    <string name="term_search_result">검색결과</string>
+    <string name="term_recent_search_word">최근 검색어</string>
+    <string name="term_place">장소</string>
+    <string name="term_product">상품</string>
+    <string name="term_popular_recommend_product">인기 추천 상품</string>
+    <string name="message_search_word_here">검색어를 입력하세요</string>
+    <string name="term_more">"more "</string>
+
+    <!-- 여행공략 -->
+    <string name="term_place_detail_info">장소 상세정보</string>
+    <string name="term_address">주소</string>
+    <string name="term_phone">전화번호</string>
+    <string name="term_homepage">홈페이지</string>
+    <string name="term_working_time">운영시간</string>
+    <string name="term_price_info">가격정보</string>
+    <string name="term_traffic">교통정보</string>
+    <string name="term_description">설명</string>
+    <string name="term_all">전체</string>
+    <string name="term_recommend_seoul">추천서울</string>
+    <string name="term_popular_place">명소</string>
+    <string name="term_shopping">쇼핑</string>
+    <string name="term_restaurant">레스토랑</string>
+    <string name="msg_review_success">리뷰가 등록되었습니다.</string>
+    <string name="msg_review_fail">리뷰 등록을 실패했습니다.</string>
+
+    <!-- 회원가입 / 로그인 -->
+    <string name="term_login">로그인</string>
+    <string name="term_join">회원가입</string>
+    <string name="term_email">이메일</string>
+    <string name="term_password">비밀번호</string>
+    <string name="term_name">프로필 이름</string>
+    <string name="term_password_join">Password (6&#8211;16)</string>
+    <string name="term_re_password_join">Re-Password</string>
+    <string name="term_gender">Gender</string>
+    <string name="term_gender_male">Male</string>
+    <string name="term_gender_female">Female</string>
+    <string name="msg_warn_password_only_english_and_number">비밀번호는 6~16자의 영문/숫자 조합으로 만드세요</string>
+    <string name="term_date_of_birth">Date of birth</string>
+    <string name="term_auto_login">자동 로그인</string>
+    <string name="term_find_password">비밀번호 찾기</string>
+    <string name="msg_not_connect_network">네트워크에 연결이 되어 있어야 사용이 가능합니다.</string>
+    <string name="msg_agreement">이용약관 동의</string>
+    <string name="msg_private_agreement">개인정보약관 동의</string>
+    <string name="msg_gps_agreement">위치정보약관 동의</string>
+    <string name="msg_above_fourteen_agreement">14세이상만 가입가능</string>
+    <string name="term_requirement">(필수)</string>
+    <string name="msg_date_of_birth">생일을 입력해주세요</string>
+    <string name="term_send">보내기</string>
+    <string name="msg_please_valid_check_name">영문/숫자만 입력가능합니다.</string>
+    <string name="msg_valid_password">영문/숫자/특수문자로 입력가능합니다.</string>
+    <!-- 지하철 -->
+    <string name="term_find_start_station">출발역 찾기</string>
+    <string name="msg_please_gps_enable">"원활한 서비스 이용을 위해서 GPS를 ‘사용’으로 해주세요"</string>
+    <string name="msg_find_station">지하철역 검색</string>
+    <string name="term_start">START</string>
+    <string name="term_finish">FINISH</string>
+    <string name="msg_dont_support_outside_seoul">서울 외 지역은 서비스 준비중입니다.</string>
+    <string name="msg_near_by_station">가장 가까운 역입니다.</string>
+    <string name="term_exit_info_title">출구정보</string>
+    <!-- 맵 -->
+    <string name="map_gps_noUse">원활한 서비스 이용을 위해서 GPS를 ‘사용’으로 해주세요.</string>
+    <string name="map_gps_Location_fail">위치를 찾을 수 없습니다.</string>
+    <string name="map_subway_start">출발지로 선택</string>
+    <string name="map_subway_end">도착지로 선택</string>
+    <string name="msg_is_download_map">지도 다운로드 후, 이용가능합니다. 서울지도를 다운로드하시겠습니까?</string>
+    <string name="msg_dest_arrived">목적지에 도착하였습니다.</string>
+    <string name="app_finish">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
+    <string name="msg_no_search_result">검색 결과가 없습니다.</string>
+    <string name="map_navigation_long_distance">도보로 이용하기에 먼거리입니다. 지하철역으로 안내해드릴까요?</string>
+    <!-- Intro -->
+    <string name="msg_map_donwload">서울 지도를 다운로드 중 입니다\n잠시만 기다려주세요</string>
+
+    <!-- 지하철 -->
+    <string name="term_set_start_station">출발역 설정</string>
+    <string name="term_set_end_station">도착역 설정</string>
+    <!-- 내 일정 -->
+    <string name="term_recommend_travel_schedule">추천자동일정 만들기</string>
+    <string name="term_recommend_schedule_compeleted">추천자동일정 완성</string>
+    <string name="term_recommend_schedule_save">내 일정으로 저장하기</string>
+    <string name="term_select_date">날짜 선택하기</string>
+    <string name="msg_warn_empty_start_date">출발일을 선택해주세요</string>
+    <string name="msg_progress_recommend_schedule">추천일정을 생성중입니다.</string>
+    <string name="term_another_recommend_schedule">다른 일정 추천 받기</string>
+    <string name="term_generate_new_schedule">새로 만들기</string>
+    <string name="term_compelete">완료</string>
+    <string name="msg_recommend_schedule_help">어디서 어떻게 해야하는지\n일정이 막막하시다면?</string>
+    <string name="msg_recommend_schedule_help_1">자동추천일정으로 쉽게 여행일정을 완성하세요.</string>
+    <string name="msg_recommend_step_1">여행일정이 정해지셨다면?</string>
+    <string name="msg_recommend_step_2">이번 여행테마는?</string>
+    <string name="term_select_start_date">출발일 선택</string>
+    <string name="term_select_schedule_day">일정선택</string>
+    <string name="term_next">다음</string>
+    <string name="term_warn_limit_7_days">"* 최대 7일까지 선택가능합니다"</string>
+    <string name="term_popular_schedule">인기있는 일정</string>
+    <string name="term_registered_schedule">등록한 내일정</string>
+    <string name="term_bookmarked_schedule">북마크한 일정</string>
+    <string name="msg_save_my_schedule">내 일정으로 저장하시겠습니까?</string>
+    <string name="msg_init_recommend_schedule">모든 설정을 초기화하시겠습니까?</string>
+    <!-- Place -->
+    <string name="term_place_description">장소 설명</string>
+    <!-- Main -->
+    <string name="msg_dont_connect_network">네트워크 연결 시, 이용가능합니다.</string>
+    <string name="msg_logout">로그아웃 하시겠습니까?</string>
+
+    <!-- Mall -->
+    <string name="term_top_brand">"[TOP BRAND]"</string>
+    <string name="term_trend_korea">트렌디 한국</string>
+    <string name="term_exhibitions">테마 기획전</string>
+    <string name="term_price">판매가</string>
+    <string name="term_coupon_price">쿠폰적용 할인가</string>
+    <string name="term_product_coupon">할인쿠폰</string>
+    <string name="term_delivery_fee">배송비</string>
+    <string name="msg_product_price_currency">(가격은 환율에 따라 변동될 수 있습니다.)</string>
+    <string name="term_delivery_some_day">지정일 배송</string>
+    <string name="term_product_detail_info">상세정보</string>
+    <string name="term_product_detail_review">상품평</string>
+    <string name="term_product_detail_delivery_info">배송정보</string>
+    <string name="term_product_detail_refund">반품교환</string>
+    <string name="term_buy">바로구매</string>
+    <string name="term_all_rate">"/5.0"</string>
+    <!-- 티켓 -->
+    <string name="term_all_tickets">모든 티켓</string>
+    <string name="term_bought_ticket">구매한 티켓</string>
+    <string name="term_validity_period">사용기간</string>
+    <string name="term_buy_immediately">바로구매</string>
+    <string name="term_validity_condition">사용조건</string>
+    <string name="term_refund_condition">환불조건</string>
+    <string name="term_where_use_in">사용처</string>
+    <string name="term_discount_price">할인적용가</string>
+    <string name="term_show_location">위치보기</string>
+
+    <!-- 쿠폰 -->
+    <string name="term_all_coupons">모든 쿠폰</string>
+    <string name="term_downloaded_coupon">다운받은 쿠폰</string>
+    <string name="term_used">사용완료</string>
+    <string name="term_ticket_en">"TICKET "</string>
+    <string name="term_ticket_and_coupon_buy">구매하기</string>
+    <string name="term_coupon_en">"COUPON "</string>
+
+    <!-- 쿠폰 -->
+    <string name="term_quantity_unit">매</string>
+    <string name="term_download">다운로드</string>
+    <string name="term_order_sheet">주문서 작성 결제</string>
+    <string name="term_code">상품 코드</string>
+    <string name="term_quantity">매수</string>
+    <string name="term_age">연령</string>
+    <string name="term_select_age">연령 선택</string>
+
+    <string-array name="age_type">
+        <item>성인</item>
+        <item>청소년</item>
+        <item>아동</item>
+    </string-array>
+
+    <string name="term_customer_info">주문자 정보</string>
+    <string name="term_customer_name">주문자</string>
+    <string name="term_english_name">영문 성명</string>
+    <string name="term_passport_number">여권번호</string>
+    <string name="term_phone_number_optional">전화(선택)</string>
+    <string name="term_order_info">결제 정보</string>
+    <string name="term_total_price">결제 예정금액</string>
+    <string name="term_total_quantity">총 구매 매수</string>
+    <string name="term_total_quantity_unit">매</string>
+    <string name="term_discount_by_coupon">쿠폰할인</string>
+    <string name="term_bill_price">최종 결제 금액</string>
+    <string name="msg_order_agree">주문한 상품의 상품명, 상품가격, 배송정보를 확인하였으며, 구매에 동의하시겠습니까?</string>
+    <string name="term_pay_type">결제 수단</string>
+    <string name="term_pay_type_unionpay">유니온페이</string>
+    <string name="term_pay_type_alipay">알리페이</string>
+    <string name="msg_order_caution">• 환율로 인한 결제금액의 환차손익은 구매고객님께 부담됩니다.\n
+• 환율변동으로 인해 주문 시점과 결제 시점의 자국통화 환산금액에 차액이 발생할 수 있으며, 실제 자국 통화 결제금액은 카드정보 입력화면에 표시되는 금액으로 확인해 주시기 바랍니다.\n
+• 결제에 대한 문의가 필요하신 경우 SNS공식 QQ번호 : 2889751559 (평일 오전 9시~오후 6시, 한국시각 기준) 로 연락해주시기 바랍니다.</string>
+    <string name="term_checkout">결제하기</string>
+    <string name="error_english_name_is_empty">영문 성명을 입력하세요</string>
+    <string name="error_passport_number_is_empty">여권번호를 입력하세요</string>
+    <string name="error_didnt_agree_order">구매 동의를 해주세요</string>
+    <string name="term_order_completed">구매 완료</string>
+    <string name="msg_order_completed">주문/결제가 정상적으로 완료되었습니다.</string>
+    <string name="msg_order_completed_description">구매 내역은 e-mail 또는 마이페이지의 티켓에서 확인 가능합니다.</string>
+    <string name="term_order_code">주문번호</string>
+    <string name="term_paid_by">%1$s로 결제</string>
+    <string name="term_go_to_main">메인으로</string>
+    <string name="term_go_to_bought_list">티켓내역 확인</string>
+    <string name="term_show_bought_ticket">티켓보기</string>
+    <string name="term_show_coupon">쿠폰보기</string>
+    <string name="term_how_to_use">사용방법</string>
+    <string name="term_instructions">유의사항</string>
+    <string name="term_already_have_coupon">이미 다운로드한 쿠폰입니다. 마이페이지>티켓/쿠폰에서 확인하실 수 있습니다. 쿠폰을 확인하시겠습니까?</string>
+    <string name="term_coupon_download_completed">쿠폰을 받았습니다. 마이페이지>티켓/쿠폰에서 확인하실 수 있습니다 쿠폰을 확인하겠습니까?</string>
+    <string name="term_show_coupon_list">쿠폰내역 확인</string>
+    <string name="term_coupon_title">쿠폰명</string>
+    <string name="term_coupon_number">쿠폰번호</string>
+    <string name="term_use_coupon">사용하기(직원전용)</string>
+    <string name="term_confirm_use_coupon">매장 담당자가 확인하는 버튼입니다. 사용후에는 취소 및 환불이 불가능합니다. 쿠폰을 사용하시겠습니까?</string>
+    <string name="term_conpun_used">사용완료 하였습니다.</string>
+    <!-- 여행일정 -->
+    <string name="msg_empty_my_schedule">등록된 일정이 없습니다.</string>
+    <string name="term_declare">신고하기</string>
+    <string name="msg_empty_my_bookmark">북마크한 일정이 없습니다.</string>
+    <string name="msg_empty_my_bookmark_place">북마크한 장소가 없습니다.</string>
+    <string name="msg_recommend_schedule">한고우요우 자동추천일정으로\n여행일정을 만들어보세요!</string>
+    <string name="msg_empty_search_result">결과가 없습니다.</string>
+    <string name="msg_confirm_delete">정말 삭제하시겠습니까?</string>
+    <string name="term_declare_review">리뷰 신고하기</string>
+    <string name="msg_declare_hint">신고 내용은 운영자에게 전달됩니다. (300자 이내)</string>
+    <string name="msg_review_declare_reason_1">부적절한 홍보 게시물</string>
+    <string name="msg_review_declare_reason_2">음란성 또는 부적합한 내용</string>
+    <string name="msg_review_declare_reason_3">기타</string>
+    <string name="term_after_day">일</string>
+    <!-- 마이페이지 -->
+    <string name="msg_help_withdraw">원활한 회원탈퇴 처리를 위해 상담원 연결이 필요합니다.\n아래 고객센터로 문의 바랍니다.</string>
+    <string name="msg_help_withdraw_qq">QQ : 2889751559</string>
+    <string name="msg_help_withdraw_tel">고객센터 전화번호 : (+82)1899-3577</string>
+    <string name="msg_help_withdraw_email">고객센터 이메일 : hanhayou@gsshop.com</string>
+    <string name="term_change_password">비밀번호 변경</string>
+    <string name="term_withdraw">회원탈퇴</string>
+    <string name="msg_withdraw">회원 탈퇴하기</string>
+    <string name="term_current_password">현재 비밀번호</string>
+    <string name="msg_hint_current_password">현재 비밀번호 (6~16자)</string>
+    <string name="term_new_password">새 비밀번호</string>
+    <string name="msg_hint_new_password">새 비밀번호 (6~16)</string>
+    <string name="msg_hint_new_password_confirm">새 비밀번호 확인</string>
+    <string name="term_see_agreement">약관보기</string>
+    <string name="term_detail">(자세히)</string>
+    <!-- 추천일정 -->
+    <string name="term_culture">한류</string>
+    <string name="term_tour">관광</string>
+    <string name="term_food">미식</string>
+    <string name="term_rest">휴양</string>
+    <string name="term_random">랜덤</string>
+    <string name="msg_warn_select_theme">테마를 골라주세요</string>
+    <string name="term_order_item">구매 상품</string>
+    <!-- 내 장소 -->
+    <string name="msg_empty_my_place">등록 된 장소가 없습니다</string>
+    <string name="term_all_check">전체 선택</string>
+    <string name="term_select_delete">선택 삭제</string>
+    <string name="term_public">전체공개</string>
+    <string name="term_private">비공개</string>
+    <string name="msg_add_bookmark">북마크에 추가되었습니다</string>
+    <!-- 지하철 -->
+    <string name="msg_same_start_end_station">이미 해당역을 출발역으로 지정했습니다. 도착역으로 변경하시겠습니까?</string>
+    <string name="msg_same_end_start_station">이미 해당역을 도착역으로 지정했습니다. 출발역으로 변경하시겠습니까?</string>
+    <!-- 로그인/회원가입 -->
+    <string name="term_check_duplicate">중복체크</string>
+    <string name="term_get_temp_password">임시 비밀번호 발급 받기</string>
+    <string name="term_auth_email">E-mail 계정 인증</string>
+    <string name="term_re_send">재전송</string>
+    <string name="term_auth">인증하기</string>
+    <string name="term_input_auth_number">인증번호 입력</string>
+    <string name="msg_complete_join">회원가입 완료!\n가입하신 이메일로 인증번호를 발송하였습니다.\n인증번호를 확인한 후,\n입력창에 인증번호를 입력해주세요</string>
+    <string name="msg_allow_receive_email">이메일을 통한 상품/이벤트 정보 수신에 동의합니다. (선택)</string>
+    <string name="term_cell_phone">휴대폰 번호 (-없이 입력)</string>
+    <string name="msg_allow_receive_phone">휴대폰/SMS 통한 상품/이벤트 정보수신에 동의합니다. (선택)</string>
+    <!-- WishList -->
+    <string name="msg_empty_wish_list">위시 리스트가 없습니다</string>
+    <string name="msg_help_wish_list">한국의 인기 상품들을 둘러보고\n위시리스트를 채워보세요!</string>
+    <string name="term_go_to_popular_product">인기상품 둘러보기</string>
+    <string name="term_popular_wish_list">인기 위시리스트</string>
+    <string name="msg_add_wishlist">위시리스트에 추가되었습니다.</string>
+    <!-- 여행공략 -->
+    <string name="msg_write_review">리뷰를 작성하시겠습니까?</string>
+    <string name="msg_rate_this_place">이 장소를\n평가해주세요!</string>
+    <string name="msg_how_about_this_place">이 장소 어떠셨나요?</string>
+    <!-- 인트로 -->
+    <string name="msg_download_travel_cotnent">여행정보를 다운로드 중입니다.\n잠시만 기다려주세요.</string>
+    <string name="msg_update_travel_content">업데이트정보를 확인 중입니다.\n잠시만 기다려주세요.</string>
+    <!-- 트렌드한국 -->
+    <string name="term_shopping_all">ALL</string>
+    <string name="term_shopping_cosmetic">이미용</string>
+    <string name="term_shopping_shoesbag">슈즈/가방</string>
+    <string name="term_shopping_accessory">보석/액세서리</string>
+    <string name="term_shopping_baby">유아용품</string>
+    <string name="term_shopping_food">식품/건강식품</string>
+    <!-- 프로모션 -->
+    <string name="term_show_detail">자세히보기</string>
+    <string name="term_dont_show_a_day">오늘하루 보지 않기</string>
+    <string name="msg_resend_emil_auth">가입하신 이메일로 인증번호를 발송하였습니다. 인증번호를 확인 후, 인증번호 입력창에 입력해주세요</string>
+    <string name="msg_warn_password_not_same_name">프로필이름과 동일한 비밀번호를 사용할 수 없습니다.</string>
+    <string name="msg_require_login">로그인시, 이용가능합니다.</string>
+    <string name="msg_empty_bookmark">북마크한 일정이 없습니다</string>
+    <!-- 번역안됨 -->
+    <string name="msg_declare_compelete">완료</string>
+    <string name="msg_send_temp_password">E-mail 주소로 임시 비밀번호가 발송 됩니다. 로그인 후 비밀번호를 바꿔주세요.</string>
+    <string name="msg_send_auth_number">가입하신 이메일로 인증번호를 발송하였습니다.\n인증번호를 확인한 후,\n입력창에 인증번호를 입력해주세요</string>
+    <string name="msg_recommend_schedule_title">#1님에게 딱 맞는 #2일 맞춤일정</string>
+    <string name="msg_not_find_email">입력하신 E-mail 주소로 등록된 계정이 없습니다.</string>
+    <string name="msg_not_chinese">본 서비스의 회원가입은 중국인만 가능합니다.</string>
+    <!-- 추가 스트링 -->
+    <string name="term_sort_my_location">내 위치순</string>
+    <string name="term_sort_popular">인기순</string>
+    <string name="msg_empty_coupon">쿠폰이 없습니다.</string>
+    <string name="msg_empty_downloaded_coupon">다운로드한 쿠폰이 없습니다.</string>
+    <string name="msg_help_download_coupon">한하요우 쿠폰을 둘러보고\n다운로드 받아보세요!</string>
+    <string name="term_showing_coupon">쿠폰 둘러보기</string>
+    <string name="term_notimelimit">제한없음</string>
+    <string name="term_exhaustion">~ 소진시까지</string>
+    <string name="term_coupon_info">쿠폰소개</string>
+    <string name="term_coupon_address">사용처 주소</string>
+    <string name="term_coupon_tel">사용처 전화번호</string>
+    <string name="term_coupon_how_to">사용방법</string>
+    <string name="term_coupon_notice">유의사항</string>
+    <string name="msg_delete_after">유효기간이 지난 쿠폰은 자동 삭제 처리 됩니다.</string>
+    <string name="msg_use_confirm">매장 담당자가 확인하는 버튼입니다. 확인 후에는 취소가 불가능합니다. 쿠폰을 사용하시겠습니까?</string>
+    <string name="msg_use_complete">사용완료하였습니다</string>
+    <string name="msg_delete_30_days">사용완료 된 쿠폰은 30일 이후,\n자동 삭제처리됩니다.</string>
+
+</resources>
