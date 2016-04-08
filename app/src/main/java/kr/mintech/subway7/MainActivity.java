@@ -40,52 +40,41 @@ public class MainActivity extends Activity {
     private RelativeLayout searchContainer;
     private RelativeLayout emptySearchContainer;
 
-    public static Activity subwayactivity = null;
+    public static Activity MainActivity;
 
 
     @SuppressLint({"SetJavaScriptEnabled", "InflateParams"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.w("oncreate","들어는 갔니");
+        Log.w("oncreate", "들어는 갔니");
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Log.d("1.어디가", "문제일까");
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        Log.d("2.어디가", "문제일까");
         super.onCreate(savedInstanceState);
-        Log.d("3.어디가", "문제일까");
         setContentView(R.layout.activity_main);
-        Log.d("4.어디가", "문제일까");
         setTitle(getString(R.string.term_subway));
-        Log.d("5.어디가", "문제일까");
-        subwayactivity = this;
-        Log.d("6.어디가", "문제일까");
+        MainActivity = this;
 
         editSearch = (EditText) findViewById(R.id.edit_search);
-        Log.d("7.어디가", "문제일까");
         searchContainer = (RelativeLayout) findViewById(R.id.search_container);
-        Log.d("8.어디가", "문제일까");
         emptySearchContainer = (RelativeLayout) findViewById(R.id.empty_search_container);
-        Log.d("9.어디가", "문제일까");
-//        typingCancel = (ImageView) findViewById(R.id.search_cancel);
-        Log.d("10.어디가", "문제일까");
-//        typingCancel.setVisibility(View.GONE);
-        Log.d("11.어디가", "문제일까");
-//        typingCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                editSearch.setText("");
-//            }
-//        });
+        typingCancel = (ImageView) findViewById(R.id.search_cancel);
+        Log.d("1.어디서", "문제인가");
+        typingCancel.setVisibility(View.GONE);
+        Log.d("2.어디서", "문제인가");
+        typingCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                editSearch.setText("");
+            }
+        });
 
         searchListView = (ListView) findViewById(R.id.search_listview);
-        Log.d("12.어디가", "문제일까");
         adapter = new SubwaySearchListAdapter(MainActivity.this);
-        Log.d("13.어디가", "문제일까");
-//        searchListView.setAdapter(adapter);
-        Log.d("14.어디가", "문제일까");
+        searchListView.setAdapter(adapter);
+
         Log.w("WARN", "GetIntent data : " + getIntent().getDoubleExtra("Latitude", -1));
         subwayNames.clear();
-        Log.d("15.어디가", "문제일까");
+
         //위경도로 지하철역 찾기
         double[] latLong = null;
         if (getIntent().hasExtra("near_by_station_lat_lon"))
@@ -98,9 +87,9 @@ public class MainActivity extends Activity {
             if (getIntent().hasExtra("dest_name"))
                 destName = getIntent().getStringExtra("dest_name");
         }
-
+        Log.d("3. 어디서", "문제인가");
         if (subwayFragment == null) {
-//    MainActivity.subwayFrament.viewClear();
+            subwayFragment.viewClear();
             subwayFragment = new SubwayFragment();
         }
 
@@ -113,8 +102,7 @@ public class MainActivity extends Activity {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.content, subwayFragment);
         ft.commit();
-
-        Log.d("참나","참나");
+        Log.d("4. 어디서", "문제인가");
         TextWatcher watcher = new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -150,10 +138,13 @@ public class MainActivity extends Activity {
                 adapter.addAll(SubwayManager.getInstance(MainActivity.this).getSubwayStationsWithTitle(editSearch.getText().toString()));
             }
         };
-        editSearch.addTextChangedListener(watcher);
+        Log.d("5. 어디서", "문제인가");
+//        editSearch.addTextChangedListener(watcher);
+        Log.d("5.1 어디서", "문제인가");
         editSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                Log.d("5.5 어디서", "문제인가");
                 if (!hasFocus) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(editSearch.getWindowToken(), 0);
@@ -163,6 +154,8 @@ public class MainActivity extends Activity {
         editSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                Log.d("6. 어디서", "문제인가");
+
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(editSearch.getWindowToken(), 0);
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -178,6 +171,7 @@ public class MainActivity extends Activity {
                     adapter.addAll(SubwayManager.getInstance(MainActivity.this).getSubwayStationsWithTitle(editSearch.getText().toString()));
                 }
                 return true;
+
             }
         });
 
@@ -191,6 +185,7 @@ public class MainActivity extends Activity {
                 searchListView.setVisibility(View.GONE);
                 StationBean bean = (StationBean) adapter.getItem(position);
                 subwayFragment.findStation(bean.stationId, bean.nameKo);
+                Log.d("7. 어디서", "문제인가");
             }
         });
 
@@ -201,39 +196,40 @@ public class MainActivity extends Activity {
 //                if (BlinkingMap.blinkingactivity != null)
 //                    BlinkingMap.blinkingactivity.finish();
 //                finish();
+                Log.d("8. 어디서", "문제인가");
             }
         });
     }
 
 
-        @Override
-        protected void onNewIntent (Intent intent){
-            Log.w("WARN", "Subway onNewIntent");
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Log.w("WARN", "Subway onNewIntent");
 
-            double[] latLong = null;
-            if (intent.hasExtra("near_by_station_lat_lon"))
-                latLong = intent.getDoubleArrayExtra("near_by_station_lat_lon");
+        double[] latLong = null;
+        if (intent.hasExtra("near_by_station_lat_lon"))
+            latLong = intent.getDoubleArrayExtra("near_by_station_lat_lon");
 
-            double[] destLatLong = null;
-            String destName = "";
-            if (intent.hasExtra("set_dest_station_lat_lon")) {
-                destLatLong = intent.getDoubleArrayExtra("set_dest_station_lat_lon");
-                if (intent.hasExtra("dest_name")) {
-                    destName = intent.getStringExtra("dest_name");
-                }
+        double[] destLatLong = null;
+        String destName = "";
+        if (intent.hasExtra("set_dest_station_lat_lon")) {
+            destLatLong = intent.getDoubleArrayExtra("set_dest_station_lat_lon");
+            if (intent.hasExtra("dest_name")) {
+                destName = intent.getStringExtra("dest_name");
             }
-
-            if (subwayFragment == null) {
-//    MainActivity.subwayFrament.viewClear();
-                subwayFragment = new SubwayFragment();
-            }
-
-            if (latLong != null)
-                subwayFragment.findNearByStation(latLong[0], latLong[1]);
-
-            if (destLatLong != null)
-                subwayFragment.findNearByStation(destLatLong[0], destLatLong[1], destLatLong[2], destName);
-            super.onNewIntent(intent);
         }
+
+        if (subwayFragment == null) {
+//    MainActivity.subwayFrament.viewClear();
+            subwayFragment = new SubwayFragment();
+        }
+
+        if (latLong != null)
+            subwayFragment.findNearByStation(latLong[0], latLong[1]);
+
+        if (destLatLong != null)
+            subwayFragment.findNearByStation(destLatLong[0], destLatLong[1], destLatLong[2], destName);
+        super.onNewIntent(intent);
     }
+}
 
