@@ -46,32 +46,46 @@ public class MainActivity extends Activity {
     @SuppressLint({"SetJavaScriptEnabled", "InflateParams"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w("oncreate","들어는 갔니");
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Log.d("1.어디가", "문제일까");
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Log.d("2.어디가", "문제일까");
         super.onCreate(savedInstanceState);
+        Log.d("3.어디가", "문제일까");
         setContentView(R.layout.activity_main);
+        Log.d("4.어디가", "문제일까");
         setTitle(getString(R.string.term_subway));
+        Log.d("5.어디가", "문제일까");
         subwayactivity = this;
+        Log.d("6.어디가", "문제일까");
 
         editSearch = (EditText) findViewById(R.id.edit_search);
+        Log.d("7.어디가", "문제일까");
         searchContainer = (RelativeLayout) findViewById(R.id.search_container);
+        Log.d("8.어디가", "문제일까");
         emptySearchContainer = (RelativeLayout) findViewById(R.id.empty_search_container);
-        typingCancel = (ImageView) findViewById(R.id.search_cancel);
-        typingCancel.setVisibility(View.GONE);
-        typingCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                editSearch.setText("");
-            }
-        });
+        Log.d("9.어디가", "문제일까");
+//        typingCancel = (ImageView) findViewById(R.id.search_cancel);
+        Log.d("10.어디가", "문제일까");
+//        typingCancel.setVisibility(View.GONE);
+        Log.d("11.어디가", "문제일까");
+//        typingCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                editSearch.setText("");
+//            }
+//        });
 
         searchListView = (ListView) findViewById(R.id.search_listview);
+        Log.d("12.어디가", "문제일까");
         adapter = new SubwaySearchListAdapter(MainActivity.this);
-        searchListView.setAdapter(adapter);
-
+        Log.d("13.어디가", "문제일까");
+//        searchListView.setAdapter(adapter);
+        Log.d("14.어디가", "문제일까");
         Log.w("WARN", "GetIntent data : " + getIntent().getDoubleExtra("Latitude", -1));
         subwayNames.clear();
-
+        Log.d("15.어디가", "문제일까");
         //위경도로 지하철역 찾기
         double[] latLong = null;
         if (getIntent().hasExtra("near_by_station_lat_lon"))
@@ -100,6 +114,7 @@ public class MainActivity extends Activity {
         ft.replace(R.id.content, subwayFragment);
         ft.commit();
 
+        Log.d("참나","참나");
         TextWatcher watcher = new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
